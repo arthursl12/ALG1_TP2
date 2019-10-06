@@ -5,8 +5,8 @@ void mergesort(std::vector<ilha> Ilhas, int esq, int dir){
     if (esq == dir)
         return;
     int meio = (esq+dir)/2;
-    mergesort(Ilhas, esq, meio)
-    mergesort(Ilhas, meio+1, dir)
+    mergesort(Ilhas, esq, meio);
+    mergesort(Ilhas, meio+1, dir);
     merge(Ilhas, esq, meio, dir);
 }
 
@@ -19,7 +19,7 @@ void merge(std::vector<ilha> Ilhas, int esq, int meio, int dir){
             esq++;
         } 
         else{
-            Ilhas[esq] = C_Ilhas[meio]
+            Ilhas[esq] = C_Ilhas[meio];
             meio++;
         }
     }
