@@ -1,16 +1,16 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
-#include <algorithm> /* std::sort */
 #include "mergesort.h"
 #include "ilha.h"
+#include "roteiros.h"
 
 /* GULOSO:
 - Calcula o custo por unidade de valor por dia
 - Ordena em ordem crescente
 - Começa da mais barata por dia com maior valor
 - Fica ali até não poder mais (custo)
-- Vai para a segunda mais barata
+- Vai para a segunda mais barata por valor
 - Segue nisso até acabar o dinheiro
 */
 
@@ -40,18 +40,6 @@ bool str_tok(std::string& str, std::string delimiter, std::string& token){
     return true;
 }
 
-/* Obtém a melhor pontuação e duração de viagem, dado um conjunto de N ilhas com
-custos e valores associados, além de um custo máximo de gastos; Adota uma estratégia
-gulosa, procurando a cada dia, ficar na ilha que dá mais retorno em termos de 
-valor com base no custo investido; Repetições são permitidas; */
-void guloso(int& pontu, int& dias, int Max, int N, std::vector<ilha> ){
-    /* O atributo 'cdv' de 'ilha' é o custo por dia por unidade de valor */
-    // TODO: mergesort de ilha 
-    /* Ordena o vector de custo por dia por unidade de valor */
-    //std::sort (custo_dia_valor.begin(), custo_dia_valor.begin()+4);
-    int disponivel = Max;
-}
-
 int main(int argc, char* argv[]){
     /* Coleta o argumento: nome do arquivo a ser lido e abre o arquivo*/
     if (argc != 2){std::cout << "Argumento faltando"; exit(1);}
@@ -61,7 +49,7 @@ int main(int argc, char* argv[]){
     if (!arq.is_open()){std::cout << "Erro na abertura do arquivo"; exit(1);}
 
     
-    /* Execução do programa: leitura e processamento */
+    /* Leitura dos dados */
     std::vector<ilha> Ilhas;
     int N;
     int C_Max;
@@ -84,19 +72,25 @@ int main(int argc, char* argv[]){
         ilha i1;
         i1.custo = custo;
         i1.valor = valor;
-        i1.cdv = custo/valor;
+        i1.cdv = (double)custo/(double)valor;
 
         Ilhas.push_back(i1);
     }
     
-
-    //mergesort(Ilhas, 0, 2);
-
+    /*
     for (int i = 0; i < N; i++){
-        std::cout << i << " - " << Ilhas[i].custo << "  " << Ilhas[i].valor << std::endl;
+        std::cout << i << " - " << Ilhas[i].custo << "  " << Ilhas[i].valor << "  " << Ilhas[i].cdv << std::endl;
     }
+
     std::cout << "Custo Total: " << C_Max << std::endl;
-    std::cout << "#ilhas: " << N << std::endl;
+    std::cout << "#ilhas: " << N << std::endl << std::endl;
+    */
+
+    /* Execução */
+    int dias = 0;
+    int pontu = 0;
+    guloso(pontu, dias, C_Max, N, Ilhas);
+    std::cout << pontu << " " << dias << std::endl;
 
     
     arq.close();

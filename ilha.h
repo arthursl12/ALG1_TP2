@@ -6,9 +6,6 @@ typedef struct ilha{
     int valor;
     double cdv;
 
-    bool operator<(const ilha outra){
-        return valor < outra.valor;
-    }
 } ilha;
 
 

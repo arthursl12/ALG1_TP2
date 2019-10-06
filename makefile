@@ -11,7 +11,7 @@ T_CFLAGS := --coverage -g -Wall -O3
 INC := -I include -I third-party
 
 
-MODULES = ilha mergesort
+MODULES = ilha mergesort roteiros
 SOURCES = $(addsuffix .cpp,$(MODULES))
 OBJECTS = $(patsubst %.cpp, %.o, $(SOURCES))
 TESTS = $(addprefix test_,$(SOURCES))
@@ -78,6 +78,6 @@ $(COVER): build/%.gcov : %.cpp
 	$(RM) *.gcda *.gcno
 
 clean:
-	$(RM) -r build/* coverage/* *.gcda *.gcno *.gcov *.exe *.o bin/* tp1
+	$(RM) -r build/* coverage/* *.gcda *.gcno *.gcov *.exe *.o bin/* $(TARGET)
 
 .PHONY: clean coverage
