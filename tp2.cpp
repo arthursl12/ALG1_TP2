@@ -1,6 +1,9 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <algorithm> /* std::sort */
+#include "mergesort.h"
+#include "ilha.h"
 
 /* GULOSO:
 - Calcula o custo por unidade de valor por dia
@@ -37,6 +40,18 @@ bool str_tok(std::string& str, std::string delimiter, std::string& token){
     return true;
 }
 
+/* Obtém a melhor pontuação e duração de viagem, dado um conjunto de N ilhas com
+custos e valores associados, além de um custo máximo de gastos; Adota uma estratégia
+gulosa, procurando a cada dia, ficar na ilha que dá mais retorno em termos de 
+valor com base no custo investido; Repetições são permitidas; */
+void guloso(int& pontu, int& dias, int Max, int N, std::vector<ilha> ){
+    /* O atributo 'cdv' de 'ilha' é o custo por dia por unidade de valor */
+    // TODO: mergesort de ilha 
+    /* Ordena o vector de custo por dia por unidade de valor */
+    //std::sort (custo_dia_valor.begin(), custo_dia_valor.begin()+4);
+    int disponivel = Max;
+}
+
 int main(int argc, char* argv[]){
     /* Coleta o argumento: nome do arquivo a ser lido e abre o arquivo*/
     if (argc != 2){std::cout << "Argumento faltando"; exit(1);}
@@ -47,8 +62,7 @@ int main(int argc, char* argv[]){
 
     
     /* Execução do programa: leitura e processamento */
-    std::vector<int> isl_custo;
-    std::vector<int> isl_pontu;
+    std::vector<ilha> Ilhas;
     int N;
     int C_Max;
 
@@ -63,13 +77,23 @@ int main(int argc, char* argv[]){
     for (int i = 0; i < N; i++){
         std::getline(arq,Linha);
         str_tok(Linha," ",aux);
-        isl_custo.push_back(std::stoi(aux));
+        int custo = std::stoi(aux);
         str_tok(Linha," ",aux);
-        isl_pontu.push_back(std::stoi(aux));
+        int valor = std::stoi(aux);
+
+        ilha i1;
+        i1.custo = custo;
+        i1.valor = valor;
+        i1.cdv = custo/valor;
+
+        Ilhas.push_back(i1);
     }
     
+
+    //mergesort(Ilhas, 0, 2);
+
     for (int i = 0; i < N; i++){
-        std::cout << i << " - " << isl_custo[i] << "  " << isl_pontu[i] << std::endl;
+        std::cout << i << " - " << Ilhas[i].custo << "  " << Ilhas[i].valor << std::endl;
     }
     std::cout << "Custo Total: " << C_Max << std::endl;
     std::cout << "#ilhas: " << N << std::endl;
