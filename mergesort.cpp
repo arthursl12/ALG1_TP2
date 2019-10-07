@@ -3,8 +3,11 @@
 #include <cmath>
 #include <iostream>
 
+/* Tempo: n log n
+Espaço: vetor original + uma cópia dele */
+
 void mergesort(std::vector<ilha>& Ilhas, int esq, int dir){
-    if (abs(esq-dir) <= 1)
+    if (esq >= dir)
         return;
     int meio = (esq+dir)/2;
     mergesort(Ilhas, esq, meio);
