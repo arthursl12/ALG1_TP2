@@ -36,7 +36,6 @@ $(OBJDIR): build/%.o : %.cpp
 $(TGTDIR): $(OBJDIR)
 	@echo ""
 	@echo COMPILANDO MAIN
-	@mkdir -p bin
 	$(CC) $(INC) $(CFLAGS) $(OBJDIR) $(TARGET).cpp -o $(TARGET)
 
 
