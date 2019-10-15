@@ -119,11 +119,11 @@ int main(int argc, char* argv[]){
     double med_G = media(tempos_guloso_int);
     double st_G = dev(tempos_guloso_int,med_G);
     double md_G = mediana(tempos_guloso_int);
-    out << nome_arq << " <G> N:" << N << " Média:" << med_G << " STD:" << st_G << " Mediana:" << md_G << std::endl;
+    out << " G " << N << " " << C_Max << " " << med_G << " " << st_G << " " << md_G << std::endl;
 
     double med_D = media(tempos_dinamica_int);
     double st_D = dev(tempos_dinamica_int,med_D);
     double md_D = mediana(tempos_dinamica_int);
-    out << nome_arq << " <D> N:" << N << " Média:" << med_D << " STD:" << st_D << " Mediana:" << md_D << std::endl;
+    out << " D " << N << " " << C_Max << " " << med_D << " " << st_D << " " << md_D << std::endl;
     return 0;
 }
