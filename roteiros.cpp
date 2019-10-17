@@ -19,7 +19,7 @@ bool str_tok(std::string& str, std::string delimiter, std::string& token){
     return true;
 }
 
-/* Retorna o índice da ilha com maior 'cdv' que é possível ir com o 'Orçamento';
+/* Retorna o índice da ilha com menor 'cdv' que é possível ir com o 'Orçamento';
 começa a procurar do índice 'idx' do vetor; retorna -1 caso
 não seja possível ir para nenhuma ilha */    
 int idx_ilha(int idx, std::vector<ilha>& Ilhas_ordenadas, int N, int Orcamento){
